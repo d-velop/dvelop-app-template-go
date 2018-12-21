@@ -40,16 +40,25 @@ won't work because these apps are not available on your local system.
 You should change the name of the app so that it reflects the business problem you would like
 to solve.
 
-For example an app whose domain is *employees applying for vacation* should be named
-something like `vacationprocess`App.
-Note that the `App` suffix isn't used in the configuration files. 
+Each appname in d.velop cloud must be unique. To facilitate this every provider/company chooses
+a unique provider prefix which serves as a namespace for the apps of this provider.
+The prefix can be selected during the registration process in d.velop cloud.
+If you choose a provider prefix which corresponds to your company name or an abbreviation of the company name
+it's very likely that it is available when you later register your app in d.velop cloud.
+
+For example if your company is named *Super Duper Software Limited* and the domain of your app 
+is *employees applying for vacation* your app should be named
+something like `superduperltd-vacationprocess`App. Note that the `App` suffix isn't used in the configuration files. 
+
+Apps belonging to the core d.velop cloud platform don't have a provider prefix. 
 
 For now the following places have to be adjusted manually as soon as the name of the app changes:
 
-1.  `Makefile` change the `APP_NAME` variable. Furthermore change the `DOMAIN_SUFFIX` to a domain you own  like `yourcompany.com`
-2.  `/terraform/backend.tf` change the `bucket` names (2 occurrences)      
-2.  `/domain/plugins/conf/config.go` change the `AppName` const
-3.  `go.mod` change the module name. Unfortunately this requires to change the import path in a lot of go files from
+1.  `Makefile` change the `APP_NAME` variable. Furthermore change the `DOMAIN_SUFFIX` to a domain you own like `yourcompany.com`
+2.  `/terraform/backend.tf` change the `bucket` names (2 occurrences)
+3.  `docker-build.bat` and `dockerbuild.sh` change the `APPNAME` variable      
+4.  `/domain/plugins/conf/config.go` change the `AppName` const
+5.  `go.mod` change the module name. Unfortunately this requires to change the import path in a lot of go files from
     `github.com/d-velop/dvelop-app-template-go` to something like `github.com/<yourcompany>/<appname>`.
     
 The 'Replace' function of your IDE should help.
