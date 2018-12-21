@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>{{.Title}}</title>
+    <link href="{{.AssetBasePath}}/vacationrequest.css" rel="stylesheet">
+<body data-resource="Vacationrequest" class="mdc-typography">
+<header>
+    <h1 class="mdc-typography--title">Urlaubsantrag</h1>
+</header>
+<main>
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell"></div>
+            <div class="mdc-layout-grid__cell"></div>
+            <div class="mdc-layout-grid__cell"></div>
+        </div>
+    </div>
+    <form action="/vacationprocess/vacationrequest" method="post" class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell">
+                <div class="mdc-form-field mdc-form-field--align-end">
+                    <input name="from" type="date" id="from">
+                    <label for="from">Von</label>
+                </div>
+                <div class="mdc-form-field mdc-form-field--align-end">
+                    <input name="to" type="date" id="to">
+                    <label for="to">Bis</label>
+                </div>
+                <div class="mdc-select">
+                    <select name="type" id="type" class="mdc-select__native-control">
+                        <option value="Jahresurlaub" selected>Jahresurlaub</option>
+                        <option value="Sonderurlaub">Sonderurlaub</option>
+                        <option value="Freizeitausgleich">Freizeitausgleich</option>
+                    </select>
+                    <div class="mdc-select__label mdc-select__label--float-above">Urlaubsart wählen</div>
+                    <div class="mdc-select__bottom-line"></div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell--span-12">
+                <div class="mdc-text-field mdc-text-field--textarea"id="comment_tf">
+                    <textarea name="comment" type="text" id="comment" rows="8" class="mdc-text-field__input"></textarea>
+                    <label for="comment" class="mdc-floating-label">Kommentar</label>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell--span-12">
+                <button class="mdc-button mdc-button--raised" id = "done_btn">
+                    <i class="material-icons mdc-button__icon">done</i>Abschicken
+                </button>
+            </div>
+        </div>
+    </form>
+</main>
+<script type="text/javascript" src="{{.AssetBasePath}}/vacationrequest.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/.idea/
+/dist/
+*_gen.*
+/buildcontainer/build.log
+/terraform/.terraform/
