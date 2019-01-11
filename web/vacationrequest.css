@@ -1,0 +1,8 @@
+.mdc-text-field,
+.mdc-select {
+  min-width: 100%; }
+
+.dmc-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px; }

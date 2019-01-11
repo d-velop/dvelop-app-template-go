@@ -1,60 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>{{.Title}}</title>
-    <link href="{{.AssetBasePath}}/vacationrequest.css" rel="stylesheet">
-<body data-resource="Vacationrequest" class="mdc-typography">
-<header>
-    <h1 class="mdc-typography--title">Urlaubsantrag</h1>
-</header>
-<main>
-    <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell"></div>
-            <div class="mdc-layout-grid__cell"></div>
-            <div class="mdc-layout-grid__cell"></div>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apply for vacation</title>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="{{.AssetBasePath}}/vacationrequest.css"/>
+</head>
+
+<body class="mdc-typography">
+<form action="/acme-apptemplatego/vacationrequest" method="post" class="mdc-layout-grid dmc-form">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+            <h1 class="mdc-typography--headline5">Urlaubsantrag</h1>
+        </div>
+        <div class="mdc-layout-grid__cell">
+            <div class="mdc-text-field mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">event</i>
+                <input name="from" type="text" id="from" class="mdc-text-field__input"
+                       aria-controls="from-helper-text"
+                       aria-describedby="from-helper-text">
+                <label for="from" class="mdc-floating-label">From</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <p id="from-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
+               aria-hidden="true">
+                e.g. 06/20/1978
+            </p>
+        </div>
+        <div class="mdc-layout-grid__cell">
+            <div class="mdc-text-field mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">event</i>
+                <input name="to" type="text" id="to" class="mdc-text-field__input"
+                       aria-controls="to-helper-text"
+                       aria-describedby="to-helper-text">
+                <label for="to" class="mdc-floating-label">To</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <p id="to-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
+               aria-hidden="true">
+                e.g. 06/20/1978
+            </p>
+        </div>
+        <div class="mdc-layout-grid__cell">
+            <div class="mdc-select">
+                <i class="mdc-select__dropdown-icon"></i>
+                <select name="type" id="type" class="mdc-select__native-control">
+                    <option value="Jahresurlaub" selected>Jahresurlaub</option>
+                    <option value="Sonderurlaub">Sonderurlaub</option>
+                    <option value="Freizeitausgleich">Freizeitausgleich</option>
+                </select>
+                <label for="type" class="mdc-floating-label mdc-floating-label--float-above">Type</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+            <div class="mdc-text-field mdc-text-field--textarea">
+                <textarea name="comment" id="comment" class="mdc-text-field__input" rows="5" cols="40"></textarea>
+                <div class="mdc-notched-outline">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__notch">
+                        <label for="comment" class="mdc-floating-label">Comment</label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <form action="/vacationprocess/vacationrequest" method="post" class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell">
-                <div class="mdc-form-field mdc-form-field--align-end">
-                    <input name="from" type="date" id="from">
-                    <label for="from">Von</label>
-                </div>
-                <div class="mdc-form-field mdc-form-field--align-end">
-                    <input name="to" type="date" id="to">
-                    <label for="to">Bis</label>
-                </div>
-                <div class="mdc-select">
-                    <select name="type" id="type" class="mdc-select__native-control">
-                        <option value="Jahresurlaub" selected>Jahresurlaub</option>
-                        <option value="Sonderurlaub">Sonderurlaub</option>
-                        <option value="Freizeitausgleich">Freizeitausgleich</option>
-                    </select>
-                    <div class="mdc-select__label mdc-select__label--float-above">Urlaubsart wählen</div>
-                    <div class="mdc-select__bottom-line"></div>
-                </div>
-            </div>
-            <div class="mdc-layout-grid__cell--span-12">
-                <div class="mdc-text-field mdc-text-field--textarea"id="comment_tf">
-                    <textarea name="comment" type="text" id="comment" rows="8" class="mdc-text-field__input"></textarea>
-                    <label for="comment" class="mdc-floating-label">Kommentar</label>
-                </div>
-            </div>
-            <div class="mdc-layout-grid__cell--span-12">
-                <button class="mdc-button mdc-button--raised" id = "done_btn">
-                    <i class="material-icons mdc-button__icon">done</i>Abschicken
-                </button>
-            </div>
-        </div>
-    </form>
-</main>
-<script type="text/javascript" src="{{.AssetBasePath}}/vacationrequest.js"></script>
+    <div class="dmc-form__actions">
+        <button type="submit" class="mdc-button" id="submit">Ok</button>
+    </div>
+</form>
+<script async src="{{.AssetBasePath}}/vacationrequest.js"></script>
 </body>
+
 </html>
