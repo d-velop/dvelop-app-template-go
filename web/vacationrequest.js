@@ -1,38 +1,11 @@
 'use strict';
 
-var mTextFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function (el) {
-    return mdc.textField.MDCTextField.attachTo(el);
-});
+const textFields = document.querySelectorAll(".mdc-text-field");
+for (let i = 0; i < textFields.length; i++) {
+    mdc.textField.MDCTextField.attachTo(textFields[i]);
+}
 
-var mButtons = [].map.call(document.querySelectorAll('.mdc-button'), function (el) {
-    return mdc.ripple.MDCRipple.attachTo(el);
-});
-
-var mSelect = mdc.select.MDCSelect.attachTo(document.querySelector('#cat-select'));
-
-var fulltextSearch = document.querySelector('#fulltext__enter-search-term');
-var showResults = document.querySelector('#show-results');
-var clear = document.querySelector('#clear');
-var categorySelect = document.querySelector('#cat-select');
-
-showResults.addEventListener('click', function (e) {
-    e.preventDefault();
-    console.log('Here are your results.');
-    window.location = "results.html";
-});
-
-clear.addEventListener('click', function (e) {
-    mTextFields.forEach(function (element) {
-        element.value = '';
-    });
-
-    mSelect.selectedIndex = 0;
-});
-
-fulltextSearch.addEventListener('keyup', function (e) {
-    e.preventDefault();
-
-    if (e.keyCode === 13) {
-        console.log('Here are your results.');
-    }
-});
+const buttons = document.querySelectorAll(".mdc-button");
+for (let i = 0; i < buttons.length; i++) {
+    mdc.ripple.MDCRipple.attachTo(buttons[i]);
+}

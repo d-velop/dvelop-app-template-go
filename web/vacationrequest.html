@@ -13,10 +13,10 @@
 </head>
 
 <body class="mdc-typography">
-<form action="/acme-apptemplatego/vacationrequest" method="post" class="mdc-layout-grid dmc-form">
+<form action="/acme-apptemplatego/vacationrequest/" method="post" class="mdc-layout-grid dmc-form">
     <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-            <h1 class="mdc-typography--headline5">Urlaubsantrag</h1>
+            <h1 class="mdc-typography--headline5">Vacation request</h1>
         </div>
         <div class="mdc-layout-grid__cell">
             <div class="mdc-text-field mdc-text-field--with-leading-icon">
@@ -29,7 +29,7 @@
             </div>
             <p id="from-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
                aria-hidden="true">
-                e.g. 06/20/1978
+                e.g. 10.01.2019
             </p>
         </div>
         <div class="mdc-layout-grid__cell">
@@ -43,16 +43,16 @@
             </div>
             <p id="to-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
                aria-hidden="true">
-                e.g. 06/20/1978
+                e.g. 11.01.2019
             </p>
         </div>
         <div class="mdc-layout-grid__cell">
             <div class="mdc-select">
                 <i class="mdc-select__dropdown-icon"></i>
                 <select name="type" id="type" class="mdc-select__native-control">
-                    <option value="Jahresurlaub" selected>Jahresurlaub</option>
-                    <option value="Sonderurlaub">Sonderurlaub</option>
-                    <option value="Freizeitausgleich">Freizeitausgleich</option>
+                    <option value="Annual" selected>Annual leave</option>
+                    <option value="Special">Special leave</option>
+                    <option value="Compensatory">Compensatory time off</option>
                 </select>
                 <label for="type" class="mdc-floating-label mdc-floating-label--float-above">Type</label>
                 <div class="mdc-line-ripple"></div>

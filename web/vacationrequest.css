@@ -6,3 +6,7 @@
   display: flex;
   justify-content: flex-end;
   padding-top: 16px; }
+
+textarea {
+  resize: none;
+}
