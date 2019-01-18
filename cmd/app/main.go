@@ -26,7 +26,8 @@ func main() {
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
 		{Pattern: conf.BasePath + "/assets/", Handler: http.HandleAssets(conf.BasePath+"/assets/", assets.AssetFileSystem)},
-		{Pattern: conf.BasePath + "/vacationrequest", Handler: http.HandleVacationRequest(conf.AssetBasePath(), templates.Render)},
+		{Pattern: conf.BasePath + "/vacationrequest", Handler: http.HandleNewVacationRequest(conf.AssetBasePath(), templates.Render)},
+		{Pattern: conf.BasePath + "/vacationrequest/", Handler: http.HandleVacationRequest(conf.BasePath+"/vacationrequest/", conf.AssetBasePath(), templates.Render)},
 	}
 
 	socket, err := net.Listen("tcp", "localhost:")

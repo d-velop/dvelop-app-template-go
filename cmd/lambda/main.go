@@ -18,7 +18,8 @@ func main() {
 
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
-		{Pattern: conf.BasePath + "/vacationrequest", Handler: http.HandleVacationRequest(conf.AssetBasePath(), templates.Render)},
+		{Pattern: conf.BasePath + "/vacationrequest", Handler: http.HandleNewVacationRequest(conf.AssetBasePath(), templates.Render)},
+		{Pattern: conf.BasePath + "/vacationrequest/", Handler: http.HandleVacationRequest(conf.BasePath+"/vacationrequest/", conf.AssetBasePath(), templates.Render)},
 	}
 
 	lambda.Serve(http.Handle(resources),
