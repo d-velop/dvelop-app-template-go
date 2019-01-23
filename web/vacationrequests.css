@@ -22,7 +22,7 @@
     color:red;
 }
 
-[data-state="confirmed"] .state-icon {
+[data-state="accepted"] .state-icon {
     color:green;
 }
 

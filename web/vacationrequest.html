@@ -13,7 +13,7 @@
 </head>
 
 <body class="mdc-typography" data-mode="{{.Mode}}">
-<form action="/acme-apptemplatego/vacationrequest/" method="post" class="mdc-layout-grid">
+<form action="/acme-apptemplatego/vacationrequest/" method="post" id="form" class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h1 class="mdc-typography--headline5">Vacation request</h1>
@@ -23,28 +23,22 @@
                     <i class="material-icons mdc-text-field__icon">event</i>
                     <input name="from" type="date" id="from" class="mdc-text-field__input"
                            aria-controls="from-helper-text"
-                           aria-describedby="from-helper-text" value="10/22/2015">
+                           aria-describedby="from-helper-text"
+                           value="{{.From}}">
                     <label for="from" class="mdc-floating-label">From</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
-                <p id="from-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
-                   aria-hidden="true">
-                    e.g. 10.01.2019
-                </p>
             </div>
             <div class="mdc-layout-grid__cell">
                 <div class="mdc-text-field mdc-text-field--with-leading-icon">
                     <i class="material-icons mdc-text-field__icon">event</i>
                     <input name="to" type="date" id="to" class="mdc-text-field__input"
                            aria-controls="to-helper-text"
-                           aria-describedby="to-helper-text">
+                           aria-describedby="to-helper-text"
+                           value="{{.To}}">
                     <label for="to" class="mdc-floating-label">To</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
-                <p id="to-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
-                   aria-hidden="true">
-                    e.g. 11.01.2019
-                </p>
             </div>
             <div class="mdc-layout-grid__cell">
                 <div class="mdc-select">
@@ -61,7 +55,7 @@
 
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <div class="mdc-text-field mdc-text-field--textarea">
-                    <textarea name="comment" id="comment" class="mdc-text-field__input" rows="5" cols="40"></textarea>
+                    <textarea name="comment" id="comment" class="mdc-text-field__input" rows="5" cols="40">{{.Comment}}</textarea>
                     <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__notch">
@@ -76,6 +70,14 @@
             <button type="submit" class="mdc-button" id="submit">Ok</button>
         </div>
 </form>
+<div class="mdc-snackbar">
+    <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label"
+             role="status"
+             aria-live="polite">Placeholder
+        </div>
+    </div>
+</div>
 <script async src="{{.AssetBasePath}}/vacationrequest.js"></script>
 </body>
 

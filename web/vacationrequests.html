@@ -23,42 +23,23 @@
 </header>
 <div class="mdc-top-app-bar--fixed-adjust">
     <ul class="mdc-list mdc-list--two-line" aria-orientation="vertical">
-        <li class="dmc-list-item" data-state="rejected">
-            <a href="/acme-apptemplatego/vacationrequest/4711" class="mdc-list-item" tabindex="0">
-                <span class="mdc-list-item__graphic material-icons state-icon" aria-hidden="true">block</span>
-                <span class="mdc-list-item__text">
-                    <span class="mdc-list-item__primary-text">10.02.2019 -  13.02.2019</span>
-                    <span class="mdc-list-item__secondary-text">Special leave</span>
+        {{range $i, $x := .Requests}}
+            <li class="dmc-list-item" data-state="{{$x.State}}">
+                <a href="/acme-apptemplatego/vacationrequest/{{$x.Id}}" class="mdc-list-item" tabindex="0">
+                    <span class="mdc-list-item__graphic material-icons state-icon" aria-hidden="true"></span>
+                    <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__primary-text">{{$x.From}} -  {{$x.To}}</span>
+                    <span class="mdc-list-item__secondary-text">{{$x.Type}}</span>
                 </span>
-            </a>
-            <span class="mdc-list-item__meta material-icons mdc-icon-button" aria-hidden="true">more_vert</span>
-        </li>
-        <li role="separator" class="mdc-list-divider mdc-list-divider--padded"></li>
-        <li class="dmc-list-item" data-state="confirmed">
-            <a href="/acme-apptemplatego/vacationrequest/4712" class="mdc-list-item" tabindex="0">
-                <span class="mdc-list-item__graphic material-icons state-icon" aria-hidden="true">check_circle</span>
-                <span class="mdc-list-item__text">
-                    <span class="mdc-list-item__primary-text">10.01.2019 -  11.01.2019</span>
-                    <span class="mdc-list-item__secondary-text">Annual leave</span>
-                </span>
-            </a>
-            <span class="mdc-list-item__meta mdc-icon-button material-icons" aria-hidden="true">more_vert</span>
-        </li>
-        <li role="separator" class="mdc-list-divider mdc-list-divider--padded"></li>
-        <li class="dmc-list-item" data-state="cancelled">
-            <a href="/acme-apptemplatego/vacationrequest/4713" class="mdc-list-item" tabindex="0">
-                <span class="mdc-list-item__graphic material-icons state-icon" aria-hidden="true">cancel</span>
-                <span class="mdc-list-item__text">
-                    <span class="mdc-list-item__primary-text">10.03.2019 -  11.03.2019</span>
-                    <span class="mdc-list-item__secondary-text">Annual leave</span>
-                </span>
-            </a>
-            <span class="mdc-list-item__meta mdc-icon-button material-icons" aria-hidden="true">more_vert</span>
-        </li>
+                </a>
+                <span class="mdc-list-item__meta material-icons mdc-icon-button" aria-hidden="true">more_vert</span>
+            </li>
+            <li role="separator" class="mdc-list-divider mdc-list-divider--padded"></li>
+        {{end}}
     </ul>
     <div class="mdc-menu mdc-menu-surface" tabindex="-1">
         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-            <li class="mdc-list-item" role="menuitem" id="menu_confirm">
+            <li class="mdc-list-item" role="menuitem" id="menu_accept">
                 <span class="mdc-list-item__graphic dmc-list-item__graphic material-icons">check</span>
                 <span class="mdc-list-item__text">Confirm</span>
             </li>

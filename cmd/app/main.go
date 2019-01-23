@@ -3,10 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/d-velop/dvelop-app-template-go/domain/acceptVacationRequest"
+	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
+	"github.com/d-velop/dvelop-app-template-go/domain/cancelVacation"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/conf"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/assets"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/http"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
+	"github.com/d-velop/dvelop-app-template-go/domain/rejectVacationRequest"
 	"github.com/d-velop/dvelop-sdk-go/log"
 	"github.com/d-velop/dvelop-sdk-go/log/syslog"
 	"github.com/d-velop/dvelop-sdk-go/requestid"
@@ -20,10 +25,19 @@ func main() {
 	setupLogging()
 
 	// wire dependencies
-	// todo var storage = memory.NewStore()
-	//var listVacationRequestsSrv = listVacationRequests.NewService(&storage)
-
-	vacationRequestHandler := http.NewVacationRequestHandler(conf.AssetBasePath(), templates.Render)
+	storage := memory.NewStore()
+	applyForVacationService := applyForVacation.NewService(&storage)
+	cancelVacationService := cancelVacation.NewService(&storage)
+	rejectVacationRequestService := rejectVacationRequest.NewService(&storage)
+	acceptVacationRequestService := acceptVacationRequest.NewService(&storage)
+	vacationRequestHandler := http.NewVacationRequestHandler(
+		conf.AssetBasePath(),
+		templates.Render,
+		&storage,
+		applyForVacationService,
+		cancelVacationService,
+		rejectVacationRequestService,
+		acceptVacationRequestService)
 
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
