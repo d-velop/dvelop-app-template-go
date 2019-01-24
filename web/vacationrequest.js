@@ -27,7 +27,6 @@ function updateUI() {
         case "new":
             break;
         case "edit":
-            // code block
             break;
         default:
             // show

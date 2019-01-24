@@ -154,7 +154,7 @@ func (h *vacationRequestHandler) handleSingle(subresource string) http.Handler {
 			vr, err := h.storage.FindById(req.Context(), subresource)
 			dto := toHtmlDto(vr)
 			dto.Title = fmt.Sprintf("Vacation Request %v", vr.Id)
-			dto.State = "show"
+			dto.Mode = "show"
 			dto.AssetBasePath = h.assetBasePath
 			err = h.renderhtml(w, dto, "vacationrequest.html")
 			if err != nil {
