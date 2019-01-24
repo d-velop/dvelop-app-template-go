@@ -2,13 +2,14 @@
 package applyForVacation
 
 import (
+	"context"
 	"github.com/d-velop/dvelop-app-template-go/domain"
 	"github.com/satori/go.uuid"
 )
 
 // Service implements the apply for vacation use-case
 type Service interface {
-	Execute(vr domain.VacationRequest) string
+	Execute(ctx context.Context, vr domain.VacationRequest) string
 }
 
 type service struct {
@@ -21,9 +22,10 @@ func NewService(r domain.VacationRequestRepository) Service {
 }
 
 // Executes the service
-func (s *service) Execute(vr domain.VacationRequest) string {
+func (s *service) Execute(ctx context.Context, vr domain.VacationRequest) string {
 	// business logic like validation goes here!
+	// todo error handling
 	vr.Id = uuid.Must(uuid.NewV4()).String()
-	s.vacReqRepo.Add(vr)
+	s.vacReqRepo.Add(ctx, vr)
 	return vr.Id
 }

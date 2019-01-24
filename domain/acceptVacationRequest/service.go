@@ -2,13 +2,14 @@
 package acceptVacationRequest
 
 import (
+	"context"
 	"github.com/d-velop/dvelop-app-template-go/domain"
 )
 
 // Service implements the accept vacation request use-case
 // todo extract common interface
 type Service interface {
-	Execute(vacationRequestId string)
+	Execute(ctx context.Context, vacationRequestId string)
 }
 
 type service struct {
@@ -21,10 +22,10 @@ func NewService(r domain.VacationRequestRepository) Service {
 }
 
 // Executes the service
-func (s *service) Execute(vacationRequestId string) {
+func (s *service) Execute(ctx context.Context, vacationRequestId string) {
 	// business logic like validation goes here!
 	// todo error handling
-	vr, _ := s.vacReqRepo.FindById(vacationRequestId)
+	vr, _ := s.vacReqRepo.FindById(ctx, vacationRequestId)
 	vr.State = domain.REQUEST_ACCEPTED
-	s.vacReqRepo.Update(vr)
+	s.vacReqRepo.Update(ctx, vr)
 }

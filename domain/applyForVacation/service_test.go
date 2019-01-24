@@ -1,16 +1,19 @@
 package applyForVacation_test
 
 import (
+	"context"
 	"github.com/d-velop/dvelop-app-template-go/domain"
 	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
+	"github.com/d-velop/dvelop-sdk-go/tenant"
 	"testing"
 	"time"
 )
 
 func TestNewAndValidRequest_NewRequestIsStored(t *testing.T) {
+	ctx := tenant.SetId(context.Background(), "abc")
 	vacRequestRepo := memory.NewStore()
-	s := applyForVacation.NewService(&vacRequestRepo)
+	s := applyForVacation.NewService(vacRequestRepo)
 	newVR := domain.VacationRequest{
 		From:    time.Date(2018, 10, 10, 0, 0, 0, 0, time.UTC),
 		To:      time.Date(2018, 10, 11, 0, 0, 0, 0, time.UTC),
@@ -18,9 +21,9 @@ func TestNewAndValidRequest_NewRequestIsStored(t *testing.T) {
 		Comment: "I realy need a day of",
 	}
 
-	s.Execute(newVR)
+	s.Execute(ctx, newVR)
 
-	vrs, e := vacRequestRepo.FindAllVacationRequests()
+	vrs, e := vacRequestRepo.FindAllVacationRequests(ctx)
 	if e != nil {
 		t.Error(e)
 	}

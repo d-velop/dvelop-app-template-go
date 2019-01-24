@@ -26,14 +26,14 @@ func main() {
 
 	// wire dependencies
 	storage := memory.NewStore()
-	applyForVacationService := applyForVacation.NewService(&storage)
-	cancelVacationService := cancelVacation.NewService(&storage)
-	rejectVacationRequestService := rejectVacationRequest.NewService(&storage)
-	acceptVacationRequestService := acceptVacationRequest.NewService(&storage)
+	applyForVacationService := applyForVacation.NewService(storage)
+	cancelVacationService := cancelVacation.NewService(storage)
+	rejectVacationRequestService := rejectVacationRequest.NewService(storage)
+	acceptVacationRequestService := acceptVacationRequest.NewService(storage)
 	vacationRequestHandler := http.NewVacationRequestHandler(
 		conf.AssetBasePath(),
 		templates.Render,
-		&storage,
+		storage,
 		applyForVacationService,
 		cancelVacationService,
 		rejectVacationRequestService,

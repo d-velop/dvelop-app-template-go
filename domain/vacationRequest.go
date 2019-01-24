@@ -1,7 +1,10 @@
 // Package domain contains the heart of the domain model.
 package domain
 
-import "time"
+import (
+	"context"
+	"time"
+)
 
 type VacationType int
 
@@ -52,8 +55,8 @@ type VacationRequest struct {
 
 // Repository provides access to vacation request repository
 type VacationRequestRepository interface {
-	FindAllVacationRequests() ([]VacationRequest, error)
-	FindById(string) (VacationRequest, error)
-	Add(VacationRequest)
-	Update(VacationRequest) error
+	FindAllVacationRequests(context.Context) ([]VacationRequest, error)
+	FindById(context.Context, string) (VacationRequest, error)
+	Add(context.Context, VacationRequest) error
+	Update(context.Context, VacationRequest) error
 }

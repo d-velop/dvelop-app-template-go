@@ -100,7 +100,7 @@ func (h *vacationRequestHandler) handleList() http.Handler {
 			}
 			w.Header().Set("content-type", negotiatedType.String()+";charset=utf-8")
 
-			vr, err := h.storage.FindAllVacationRequests()
+			vr, err := h.storage.FindAllVacationRequests(req.Context())
 			dto := toListHtmlDto(vr)
 			dto.Title = "Vacationrequests"
 			dto.AssetBasePath = h.assetBasePath
@@ -130,7 +130,7 @@ func (h *vacationRequestHandler) handleList() http.Handler {
 				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 				return
 			}
-			id := h.applyForVacation.Execute(vr)
+			id := h.applyForVacation.Execute(req.Context(), vr)
 			w.Header().Set("Location", conf.BasePath+"/vacationrequest/"+id)
 			w.WriteHeader(http.StatusCreated)
 		default:
@@ -151,7 +151,7 @@ func (h *vacationRequestHandler) handleSingle(subresource string) http.Handler {
 				return
 			}
 			w.Header().Set("content-type", negotiatedType.String()+";charset=utf-8")
-			vr, err := h.storage.FindById(subresource)
+			vr, err := h.storage.FindById(req.Context(), subresource)
 			dto := toHtmlDto(vr)
 			dto.Title = fmt.Sprintf("Vacation Request %v", vr.Id)
 			dto.State = "show"
@@ -182,11 +182,11 @@ func (h *vacationRequestHandler) handleSingle(subresource string) http.Handler {
 			}
 			switch dto.State {
 			case domain.VacationRequestStates[domain.REQUEST_ACCEPTED]:
-				h.acceptVacationRequest.Execute(subresource)
+				h.acceptVacationRequest.Execute(req.Context(), subresource)
 			case domain.VacationRequestStates[domain.REQUEST_REJECTED]:
-				h.rejectVacationRequest.Execute(subresource)
+				h.rejectVacationRequest.Execute(req.Context(), subresource)
 			case domain.VacationRequestStates[domain.REQUEST_CANCELLED]:
-				h.cancelVacation.Execute(subresource)
+				h.cancelVacation.Execute(req.Context(), subresource)
 			}
 			w.Header().Set("Content-Location", conf.BasePath+"/vacationrequest/"+subresource)
 			// todo E-Tag cf. https://tools.ietf.org/html/rfc5789#section-2.1
