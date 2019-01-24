@@ -40,6 +40,7 @@ func main() {
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
+		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},
 	}
 
 	lambda.Serve(http.Handle(resources),

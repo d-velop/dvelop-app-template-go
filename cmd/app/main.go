@@ -44,6 +44,7 @@ func main() {
 		{Pattern: conf.BasePath + "/assets/", Handler: http.HandleAssets(conf.BasePath+"/assets/", assets.AssetFileSystem)},
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
+		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},
 	}
 
 	socket, err := net.Listen("tcp", "localhost:")
