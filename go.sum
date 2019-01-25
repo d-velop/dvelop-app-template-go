@@ -2,6 +2,8 @@ github.com/aws/aws-lambda-go v1.8.0 h1:YMCzi9FP7MNVVj9AkGpYyaqh/mvFOjhqiDtnNlWtK
 github.com/aws/aws-lambda-go v1.8.0/go.mod h1:zUsUQhAUjYzR8AuduJPCfhBuKWUaDbQiPOG+ouzmE1A=
 github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e h1:2NSCL0VHLIilATJVBtNul6W351oTO6/8lXHb11A4nTA=
 github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e/go.mod h1:eRISj8VauYGjgWCPtsvWqVyG/dbbbxjYkU/gCnTEbeg=
+github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff h1:4kCBw/6sCti89Ieze9mfT1Vo0DcLP5VJYG3ZdYA+4ok=
+github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff/go.mod h1:5QIi4aF/LsVOQ3vwcnKX9OdICQhdeaGlBmP5Bg+3ZyE=
 github.com/d-velop/dvelop-sdk-go/lambda v0.0.0-20181220074725-b377df504a0e h1:ZS3bfM6xlYiK3C9+mOK+6FiYC5DALy7TqXFQz3DcC3g=
 github.com/d-velop/dvelop-sdk-go/lambda v0.0.0-20181220074725-b377df504a0e/go.mod h1:g83TtS3HBXx+yd6r40Lb2rWAV65Xx0vCBP4H+b2lnB0=
 github.com/d-velop/dvelop-sdk-go/log v0.0.0-20181220074725-b377df504a0e h1:Cb+amkkDuVfVtvV1CcLUXX/cNCxrgOxf5n+ky1JQVMY=
@@ -16,6 +18,8 @@ github.com/d-velop/dvelop-sdk-go/tenant v0.0.0-20190124101707-3866f3fdcaff h1:5e
 github.com/d-velop/dvelop-sdk-go/tenant v0.0.0-20190124101707-3866f3fdcaff/go.mod h1:cG8QRBW1gufkeNNH2PPx5cp8Gdnr5eaqWJt931c4Ipo=
 github.com/justinas/alice v0.0.0-20171023064455-03f45bd4b7da h1:5y58+OCjoHCYB8182mpf/dEsq0vwTKPOo4zGfH0xW9A=
 github.com/justinas/alice v0.0.0-20171023064455-03f45bd4b7da/go.mod h1:oLH0CmIaxCGXD67VKGR5AacGXZSMznlmeqM8RzPrcY8=
+github.com/patrickmn/go-cache v2.1.0+incompatible h1:HRMgzkcYKYpi3C8ajMPV8OFXaaRUnok+kx1WdO15EQc=
+github.com/patrickmn/go-cache v2.1.0+incompatible/go.mod h1:3Qf8kWWT7OJRJbdiICTKqZju1ZixQ/KpMGzzAfe6+WQ=
 github.com/satori/go.uuid v1.2.1-0.20181028125025-b2ce2384e17b h1:gQZ0qzfKHQIybLANtM3mBXNUtOfsCFXeTsnBqCsx1KM=
 github.com/satori/go.uuid v1.2.1-0.20181028125025-b2ce2384e17b/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371 h1:SWV2fHctRpRrp49VXJ6UZja7gU9QLHwRpIPBN89SKEo=

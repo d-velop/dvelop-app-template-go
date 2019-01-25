@@ -2,6 +2,7 @@ module github.com/d-velop/dvelop-app-template-go
 
 require (
 	github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e
+	github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff
 	github.com/d-velop/dvelop-sdk-go/lambda v0.0.0-20181220074725-b377df504a0e
 	github.com/d-velop/dvelop-sdk-go/log v0.0.0-20181220074725-b377df504a0e
 	github.com/d-velop/dvelop-sdk-go/requestid v0.0.0-20181220074725-b377df504a0e

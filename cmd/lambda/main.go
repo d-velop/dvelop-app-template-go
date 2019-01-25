@@ -11,6 +11,7 @@ import (
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/http"
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
 	"github.com/d-velop/dvelop-app-template-go/domain/rejectVacationRequest"
+	"github.com/d-velop/dvelop-sdk-go/idp"
 	"github.com/d-velop/dvelop-sdk-go/lambda"
 	"github.com/d-velop/dvelop-sdk-go/log"
 	"github.com/d-velop/dvelop-sdk-go/requestid"
@@ -36,11 +37,15 @@ func main() {
 		rejectVacationRequestService,
 		acceptVacationRequestService)
 
+	logError := func(ctx context.Context, logmessage string) { log.Error(ctx, logmessage) }
+	logInfo := func(ctx context.Context, logmessage string) { log.Info(ctx, logmessage) }
+
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
 		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},
+		{Pattern: conf.BasePath + "/idpdemo", Handler: idp.HandleAuth(tenant.SystemBaseUriFromCtx, tenant.IdFromCtx, logError, logInfo)(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
 	}
 
 	lambda.Serve(http.Handle(resources),
