@@ -24,6 +24,7 @@
                     <input name="from" type="date" id="from" class="mdc-text-field__input"
                            aria-controls="from-helper-text"
                            aria-describedby="from-helper-text"
+                           required
                            value="{{.From}}">
                     <label for="from" class="mdc-floating-label">From</label>
                     <div class="mdc-line-ripple"></div>
@@ -35,6 +36,7 @@
                     <input name="to" type="date" id="to" class="mdc-text-field__input"
                            aria-controls="to-helper-text"
                            aria-describedby="to-helper-text"
+                           required
                            value="{{.To}}">
                     <label for="to" class="mdc-floating-label">To</label>
                     <div class="mdc-line-ripple"></div>
@@ -43,7 +45,7 @@
             <div class="mdc-layout-grid__cell">
                 <div class="mdc-select">
                     <i class="mdc-select__dropdown-icon"></i>
-                    <select name="type" id="type" class="mdc-select__native-control">
+                    <select name="type" id="type" class="mdc-select__native-control" required>
                         <option value="Annual" selected>Annual leave</option>
                         <option value="Special">Special leave</option>
                         <option value="Compensatory">Compensatory time off</option>
