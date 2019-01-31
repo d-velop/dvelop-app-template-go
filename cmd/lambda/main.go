@@ -45,7 +45,7 @@ func main() {
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
 		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},
-		{Pattern: conf.BasePath + "/idpdemo", Handler: idp.HandleAuth(tenant.SystemBaseUriFromCtx, tenant.IdFromCtx, logError, logInfo)(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
+		{Pattern: conf.BasePath + "/idpdemo", Handler: idp.HandleAuth(tenant.SystemBaseUriFromCtx, tenant.IdFromCtx, false, logError, logInfo)(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
 	}
 
 	lambda.Serve(http.Handle(resources),

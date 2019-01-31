@@ -4,6 +4,8 @@ github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df
 github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e/go.mod h1:eRISj8VauYGjgWCPtsvWqVyG/dbbbxjYkU/gCnTEbeg=
 github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff h1:4kCBw/6sCti89Ieze9mfT1Vo0DcLP5VJYG3ZdYA+4ok=
 github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff/go.mod h1:5QIi4aF/LsVOQ3vwcnKX9OdICQhdeaGlBmP5Bg+3ZyE=
+github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190131133641-6dc0569413a4 h1:NvdIS0aLcskfNcQfV++avL4cYl9pzIHWSnhCSrJjdmI=
+github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190131133641-6dc0569413a4/go.mod h1:5QIi4aF/LsVOQ3vwcnKX9OdICQhdeaGlBmP5Bg+3ZyE=
 github.com/d-velop/dvelop-sdk-go/lambda v0.0.0-20181220074725-b377df504a0e h1:ZS3bfM6xlYiK3C9+mOK+6FiYC5DALy7TqXFQz3DcC3g=
 github.com/d-velop/dvelop-sdk-go/lambda v0.0.0-20181220074725-b377df504a0e/go.mod h1:g83TtS3HBXx+yd6r40Lb2rWAV65Xx0vCBP4H+b2lnB0=
 github.com/d-velop/dvelop-sdk-go/log v0.0.0-20181220074725-b377df504a0e h1:Cb+amkkDuVfVtvV1CcLUXX/cNCxrgOxf5n+ky1JQVMY=
