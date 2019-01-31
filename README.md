@@ -13,8 +13,11 @@ After this adjust the code to fit the purpose of your own business problem/app.
 ### Prerequisites
 
 A linux docker container is used for the build and deployment process of the app.
-So besides docker the only thing you need on your local development system is a git client
-and an editor or IDE for golang.
+So besides docker (use a recent version) the only thing you need on your local development system is a git client
+and an editor or IDE for Go.
+ 
+Usually the IDE requires an locally installed [Go](https://golang.org/). Please use at least version 1.11 because this
+project uses [Go Modules](https://github.com/golang/go/wiki/Modules).
 
 ### Build
 
