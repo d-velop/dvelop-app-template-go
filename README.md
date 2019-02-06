@@ -164,7 +164,7 @@ which base paths begin with `/prod` or `/dev` you need endpoints like
 
 ```
     https://vacationprocess.xyzdomain./vactionprocess
-    https://def.vacationprocess.xyzdomain./vactionprocess
+    https://dev.vacationprocess.xyzdomain./vactionprocess
 ```
 which are provided by this module.
 
