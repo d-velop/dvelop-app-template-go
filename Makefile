@@ -64,3 +64,6 @@ destroy: tf-init
 	#cd ./terraform && \
 	#terraform destroy -var "signature_secret=$SIGNATURE_SECRET" -var "build_version=$build_version" -var "appname=$(APP_NAME)" -var "domainsuffix=$(DOMAIN_SUFFIX)" -input=false -force
 
+dns:
+	cd ./terraform && terraform output -json | jq "{Domain: .domain.value, Nameserver: .nameserver.value}" > ../dist/dns-entry.json
+
