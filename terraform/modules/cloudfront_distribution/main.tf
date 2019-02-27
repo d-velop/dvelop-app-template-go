@@ -102,7 +102,7 @@ resource "aws_cloudfront_distribution" "dist" {
   viewer_certificate {
     minimum_protocol_version = "TLSv1.2_2018"
     ssl_support_method       = "sni-only"
-    acm_certificate_arn      = "${aws_acm_certificate.cert.arn}"
+    acm_certificate_arn      = "${aws_acm_certificate_validation.cert.certificate_arn}"
   }
 
   restrictions {
