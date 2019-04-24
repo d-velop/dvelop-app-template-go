@@ -47,10 +47,19 @@ module "serverless_lambda_app" {
   aws_region = "${var.aws_region}"
 }
 
+# Uncomment if you want to use cloudfront (a CDN) to deliver your assets OR custom domain names for your API endpoints.
+# IMPORTANT:
+# - Both, the cloudfront distribution and a custom domain name für API endpoints require a DNS hosted zone.
+#   So this module must be uncommented if you want to use either of them.
+/*
 module "hosted_zone" {
   source           = "modules/hosted_zone"
   hosted_zone_name = "${var.appname}${var.domainsuffix}"
 }
+output "nameserver" {
+  value = "${module.hosted_zone.nameserver}"
+}
+*/
 
 # Uncomment if you want to use cloudfront (a CDN) to deliver your assets.
 # IMPORTANT:
