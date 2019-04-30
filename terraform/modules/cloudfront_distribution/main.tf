@@ -2,7 +2,7 @@
 # cf. https://docs.aws.amazon.com/acm/latest/userguide/acm-regions.html
 provider "aws" {
   alias   = "virginia"
-  version = "~> 1.5"
+  version = "~> 2.0"
   region  = "us-east-1"
 }
 
