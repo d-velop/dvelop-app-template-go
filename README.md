@@ -81,7 +81,7 @@ You need an AWS Account to deploy your app. At the time of writing some of the A
 free to use for a limited amount of time and workload. 
 Check the [Free Tier](https://aws.amazon.com/free/) offering from AWS for the current conditions. 
 
-Manually create the S3 bucket for the terraform state configured in `terraform/backend.tf` and an IAM user with
+Manually create an IAM user with
 the appropriate rights to create the AWS resources defined by your terraform configuration. 
 You could start with a user who has the `arn:aws:iam::aws:policy/AdministratorAccess` policy to start quickly, 
 but you **should definitely restrict the rights of that IAM user to a minimum as soon as you go into production**.
