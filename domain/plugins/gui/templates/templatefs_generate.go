@@ -7,10 +7,12 @@ package main
 
 import (
 	"flag"
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
 	"log"
+	"net/http"
 	"os"
+	"path"
 
+	"github.com/shurcooL/httpfs/filter"
 	"github.com/shurcooL/vfsgen"
 )
 
@@ -20,7 +22,17 @@ func main() {
 	flag.Parse()
 	os.Chdir(wd)
 
-	err := vfsgen.Generate(templates.TemplateFileSystem, vfsgen.Options{
+	var templateFileSystem = filter.Keep(http.Dir("./web/"), func(filepath string, file os.FileInfo) bool {
+		if file.IsDir() {
+			return true
+		}
+		if path.Ext(filepath) == ".html" {
+			return true
+		}
+		return false
+	})
+
+	err := vfsgen.Generate(templateFileSystem, vfsgen.Options{
 		Filename:        "./domain/plugins/gui/templates/templatefs_prod_gen.go",
 		PackageName:     "templates",
 		BuildTags:       "release",
