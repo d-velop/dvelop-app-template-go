@@ -2,9 +2,9 @@ package applyForVacation_test
 
 import (
 	"context"
-	"github.com/d-velop/dvelop-app-template-go/domain"
-	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain/applyForVacation"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain/plugins/storage/memory"
 	"github.com/d-velop/dvelop-sdk-go/tenant"
 	"testing"
 	"time"

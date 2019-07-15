@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/conf"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain/plugins/conf"
 	"github.com/d-velop/dvelop-sdk-go/log"
 	"github.com/d-velop/dvelop-sdk-go/requestid"
 	"github.com/d-velop/dvelop-sdk-go/requestlog"

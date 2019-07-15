@@ -27,11 +27,11 @@ so if you're unsure, just email us.
 
 ## File a bug report.
 
-You can file bug reports on the [issues page](https://github.com/d-velop/dvelop-app-template-go/issues).
+You can file bug reports on the [issues page](https://git.d-velop.de/dvelopcloud/shop-middleware/issues).
 
 Please follow the following steps prior to filing a bug report.
 
-1.  Search through existing [issues](https://github.com/d-velop/dvelop-app-template-go/issues) to ensure that 
+1.  Search through existing [issues](https://git.d-velop.de/dvelopcloud/shop-middleware/issues) to ensure that 
     your specific issue has not yet been reported.
 
 2.  Ensure that you have tested the latest version of the template. 

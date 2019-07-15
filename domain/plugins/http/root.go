@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/conf"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain/plugins/conf"
 	"io"
 	"net/http"
 

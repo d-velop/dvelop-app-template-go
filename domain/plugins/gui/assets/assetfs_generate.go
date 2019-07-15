@@ -7,7 +7,7 @@ package main
 
 import (
 	"flag"
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/assets"
+	"git.d-velop.de/dvelopcloud/shop-middleware/domain/plugins/gui/assets"
 	"log"
 	"os"
 
