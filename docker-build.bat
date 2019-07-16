@@ -2,7 +2,7 @@
 
 setlocal enableextensions enabledelayedexpansion
 
-set APPNAME=shop-middleware
+set APPNAME=acme-apptemplatego
 set BUILDCONTAINER=registry.invalid/%APPNAME%_build
 
 set "denv="

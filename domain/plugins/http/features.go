@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"git.d-velop.de/dvelopcloud/shop-middleware/domain/plugins/conf"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/conf"
 	"net/http"
 
 	"github.com/d-velop/dvelop-sdk-go/contentnegotiation/mediatype"

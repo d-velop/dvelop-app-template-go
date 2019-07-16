@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"git.d-velop.de/dvelopcloud/shop-middleware/domain"
+	"github.com/d-velop/dvelop-app-template-go/domain"
 	"github.com/d-velop/dvelop-sdk-go/tenant"
 )
 

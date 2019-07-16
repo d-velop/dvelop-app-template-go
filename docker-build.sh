@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APPNAME=shop-middleware
+APPNAME=acme-apptemplatego
 BUILDCONTAINER=registry.invalid/${APPNAME}_build
 
 DENV=

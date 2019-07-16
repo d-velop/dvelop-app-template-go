@@ -1,7 +1,7 @@
 package mock
 
 import (
-	"git.d-velop.de/dvelopcloud/shop-middleware/domain"
+	"github.com/d-velop/dvelop-app-template-go/domain"
 	"time"
 )
 

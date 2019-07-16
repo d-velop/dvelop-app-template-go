@@ -3,7 +3,7 @@ package rejectVacationRequest
 
 import (
 	"context"
-	"git.d-velop.de/dvelopcloud/shop-middleware/domain"
+	"github.com/d-velop/dvelop-app-template-go/domain"
 )
 
 // Service implements the reject vacation request use-case

@@ -1,7 +1,5 @@
 github.com/aws/aws-lambda-go v1.8.0 h1:YMCzi9FP7MNVVj9AkGpYyaqh/mvFOjhqiDtnNlWtKTg=
 github.com/aws/aws-lambda-go v1.8.0/go.mod h1:zUsUQhAUjYzR8AuduJPCfhBuKWUaDbQiPOG+ouzmE1A=
-git.d-velop.de/dvelopcloud/shop-middleware v0.0.0-20190508155824-2a97735d23e0 h1:pXbtS7oeDD/uvzHbJrTZ8htEb2FMmP+/9sMYDanaLHc=
-git.d-velop.de/dvelopcloud/shop-middleware v0.0.0-20190508155824-2a97735d23e0/go.mod h1:Qxr8DDm1kVw0vV7ndRtTgXEvNYU8PcXqYhGN+SP42SA=
 github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e h1:2NSCL0VHLIilATJVBtNul6W351oTO6/8lXHb11A4nTA=
 github.com/d-velop/dvelop-sdk-go/contentnegotiation v0.0.0-20181220074725-b377df504a0e/go.mod h1:eRISj8VauYGjgWCPtsvWqVyG/dbbbxjYkU/gCnTEbeg=
 github.com/d-velop/dvelop-sdk-go/idp v0.0.0-20190124101707-3866f3fdcaff h1:4kCBw/6sCti89Ieze9mfT1Vo0DcLP5VJYG3ZdYA+4ok=

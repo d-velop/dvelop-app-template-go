@@ -64,7 +64,7 @@ docker-build rename NAME=NEW_APP_NAME
 Furthermore you might want to adjust the following values manually:
 
 1.  Change the `DOMAIN_SUFFIX` to a domain you own like `yourcompany.com`
-2.  `go.mod` change the module name from `git.d-velop.de/dvelopcloud/shop-middleware` to something like `github.com/<yourcompany>/<appname>`.
+2.  `go.mod` change the module name from `github.com/d-velop/dvelop-app-template-go` to something like `github.com/<yourcompany>/<appname>`.
     Unfortunately this requires to change the import path in a lot of go files.
     The 'Replace' function of your IDE should help.    
 
