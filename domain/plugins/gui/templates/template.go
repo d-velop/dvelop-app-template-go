@@ -13,6 +13,7 @@ import (
 func parseTemplates() *template.Template {
 	files, err := listFiles(TemplateFileSystem)
 	if err != nil {
+		log.Error(context.Background(), err)
 		panic(err)
 	}
 	t, e := vfstemplate.ParseFiles(TemplateFileSystem, nil, files...)
