@@ -11,7 +11,7 @@ import (
 )
 
 func parseTemplates() *template.Template {
-	files, err := listFiles(TemplateFileSystem)
+	files, err := getFilesIn(TemplateFileSystem, "/")
 	if err != nil {
 		log.Error(context.Background(), err)
 		panic(err)
@@ -24,31 +24,32 @@ func parseTemplates() *template.Template {
 	return t
 }
 
-func listFiles(fs http.FileSystem) ([]string, error) {
+func getFilesIn(fs http.FileSystem, dir string) ([]string, error) {
+	var readDirRecursive func(http.FileSystem, string, *[]string) error
+	readDirRecursive = func(fs http.FileSystem, dir string, res *[]string) error {
+		f, err := fs.Open(dir)
+		if err != nil {
+			return err
+		}
+		files, err := f.Readdir(-1)
+		if err != nil {
+			return err
+		}
+		for _, fi := range files {
+			if fi.IsDir() {
+				if err := readDirRecursive(fs, path.Join(dir, fi.Name()), res); err != nil {
+					return err
+				}
+				continue
+			}
+			*res = append(*res, path.Join(dir, fi.Name()))
+		}
+		return nil
+	}
+
 	var res []string
-	if err := readDirRecursive(fs, "/", &res); err != nil {
+	if err := readDirRecursive(fs, dir, &res); err != nil {
 		return nil, err
 	}
 	return res, nil
-}
-
-func readDirRecursive(fs http.FileSystem, dir string, res *[]string) error {
-	f, err := fs.Open(dir)
-	if err != nil {
-		return err
-	}
-	files, err := f.Readdir(-1)
-	if err != nil {
-		return err
-	}
-	for _, fi := range files {
-		if fi.IsDir() {
-			if err := readDirRecursive(fs, path.Join(dir, fi.Name()), res); err != nil {
-				return err
-			}
-			continue
-		}
-		*res = append(*res, path.Join(dir, fi.Name()))
-	}
-	return nil
 }
