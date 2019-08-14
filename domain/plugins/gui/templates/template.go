@@ -24,32 +24,28 @@ func parseTemplates() *template.Template {
 	return t
 }
 
-func getFilesIn(fs http.FileSystem, dir string) ([]string, error) {
-	var readDirRecursive func(http.FileSystem, string, *[]string) error
-	readDirRecursive = func(fs http.FileSystem, dir string, res *[]string) error {
-		f, err := fs.Open(dir)
-		if err != nil {
-			return err
-		}
-		files, err := f.Readdir(-1)
-		if err != nil {
-			return err
-		}
-		for _, fi := range files {
-			if fi.IsDir() {
-				if err := readDirRecursive(fs, path.Join(dir, fi.Name()), res); err != nil {
-					return err
-				}
-				continue
-			}
-			*res = append(*res, path.Join(dir, fi.Name()))
-		}
-		return nil
-	}
-
-	var res []string
-	if err := readDirRecursive(fs, dir, &res); err != nil {
+// getFilesIn returns all files from the given file system fs starting from the
+// given root directory.
+func getFilesIn(fs http.FileSystem, root string) ([]string, error) {
+	var filenames []string
+	d, err := fs.Open(root)
+	if err != nil {
 		return nil, err
 	}
-	return res, nil
+	files, err := d.Readdir(-1)
+	if err != nil {
+		return nil, err
+	}
+	for _, fi := range files {
+		if fi.IsDir() {
+			f, err := getFilesIn(fs, path.Join(root, fi.Name()))
+			if err != nil {
+				return nil, err
+			}
+			filenames = append(filenames, f...)
+			continue
+		}
+		filenames = append(filenames, path.Join(root, fi.Name()))
+	}
+	return filenames, nil
 }
