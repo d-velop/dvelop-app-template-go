@@ -59,7 +59,7 @@ apply: plan
 
 deploy-assets: asset_hash apply
 	# best practice for immutable content: cache 1 year (vgl https://jakearchibald.com/2016/caching-best-practices/)
-	aws s3 sync ./web s3://assets.$(APP_NAME)$(DOMAIN_SUFFIX)/$(ASSET_HASH) --exclude "*.html" --cache-control max-age=31536000
+	aws s3 sync ./web s3://$(APP_NAME)-assets/$(ASSET_HASH) --exclude "*.html" --cache-control max-age=31536000
 
 asset_hash:
 	$(eval ASSET_HASH=$(shell find web -type f ! -path "*.html" -exec md5sum {} \; | sort -k 2 | md5sum | tr -d " -"))

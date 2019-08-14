@@ -1,5 +1,5 @@
 locals {
-  assets_bucket_name = "assets.${var.appname}${var.domainsuffix}"
+  assets_bucket_name = "${var.appname}-assets"
 
   lambda_file      = "../dist/lambda.zip"
   source_code_hash = "${base64sha256(file("${local.lambda_file}"))}"
@@ -41,7 +41,7 @@ module "serverless_lambda_app" {
     BUILD_VERSION    = "${local.build_version}"
 
     # change to ASSET_BASE_PATH  = "https://${module.asset_cdn.dns_name}/${var.asset_hash}" if asset_cdn is enabled
-    ASSET_BASE_PATH = "https://s3-eu-central-1.amazonaws.com/${local.assets_bucket_name}/${var.asset_hash}"
+    ASSET_BASE_PATH = "https://${local.assets_bucket_name}.s3.amazonaws.com/${var.asset_hash}"
   }
 
   aws_region = "${var.aws_region}"
