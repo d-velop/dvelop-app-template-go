@@ -1,6 +1,6 @@
 // +build release
 
-//go:generate go run -tags release templatefs_generate.go --workdir ../../../../
+//go:generate go run templatefs_generate.go --workdir ../../../../
 
 package templates
 
