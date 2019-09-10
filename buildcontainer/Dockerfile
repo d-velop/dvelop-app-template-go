@@ -9,8 +9,8 @@ RUN apt-get update && \
 # go
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GOLANG_VERSION 1.12.4
-ENV GOLANG_CHECKSUM d7d1f1f88ddfe55840712dc1747f37a790cbcaa448f6c9cf51bbe10aa65442f5
+ENV GOLANG_VERSION 1.12.9
+ENV GOLANG_CHECKSUM ac2a6efcc1f5ec8bdc0db0a988bb1d301d64b6d61b7e8d9e42f662fbb75a2b9b
 RUN curl -fsSL https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o golang.tar.gz && \
     echo "${GOLANG_CHECKSUM} golang.tar.gz" | sha256sum -c - && \
     tar -C /usr/local -xzf golang.tar.gz && \
@@ -50,8 +50,8 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-null/${TERRAFOR
     unzip terraform_null_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_null_plugin.zip
 
 # terraform aws provider plugin
-ENV TERRAFORM_AWS_PLUGIN_VERSION 2.7.0
-ENV TERRAFORM_AWS_PLUGIN_CHECKSUM b2a046c82f38c1c9b89503be7d4b83049b1af445d11ea08a1b2b3196d510d02f
+ENV TERRAFORM_AWS_PLUGIN_VERSION 2.23.0
+ENV TERRAFORM_AWS_PLUGIN_CHECKSUM 8076270dfd8d31edc8aa7092f68d3d97c03104b8e47f8e2399d8688b43476d5e
 RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-aws/${TERRAFORM_AWS_PLUGIN_VERSION}/terraform-provider-aws_${TERRAFORM_AWS_PLUGIN_VERSION}_linux_amd64.zip -o terraform_aws_plugin.zip  && \
     echo "${TERRAFORM_AWS_PLUGIN_CHECKSUM} terraform_aws_plugin.zip" | sha256sum -c - && \
     unzip terraform_aws_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_aws_plugin.zip

@@ -7,10 +7,10 @@ package main
 
 import (
 	"flag"
-	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
 	"log"
 	"os"
 
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
 	"github.com/shurcooL/vfsgen"
 )
 
@@ -20,7 +20,7 @@ func main() {
 	flag.Parse()
 	os.Chdir(wd)
 
-	err := vfsgen.Generate(templates.TemplateFileSystem, vfsgen.Options{
+	err := vfsgen.Generate(templates.HTMLTemplates, vfsgen.Options{
 		Filename:        "./domain/plugins/gui/templates/templatefs_prod_gen.go",
 		PackageName:     "templates",
 		BuildTags:       "release",
