@@ -9,8 +9,8 @@ RUN apt-get update && \
 # go
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GOLANG_VERSION 1.12.9
-ENV GOLANG_CHECKSUM ac2a6efcc1f5ec8bdc0db0a988bb1d301d64b6d61b7e8d9e42f662fbb75a2b9b
+ENV GOLANG_VERSION 1.13.4
+ENV GOLANG_CHECKSUM 692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c
 RUN curl -fsSL https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o golang.tar.gz && \
     echo "${GOLANG_CHECKSUM} golang.tar.gz" | sha256sum -c - && \
     tar -C /usr/local -xzf golang.tar.gz && \

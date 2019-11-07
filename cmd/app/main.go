@@ -3,6 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"net"
+	"os"
+	"strings"
+
 	"github.com/d-velop/dvelop-app-template-go/domain/acceptVacationRequest"
 	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
 	"github.com/d-velop/dvelop-app-template-go/domain/cancelVacation"
@@ -13,13 +17,11 @@ import (
 	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
 	"github.com/d-velop/dvelop-app-template-go/domain/rejectVacationRequest"
 	"github.com/d-velop/dvelop-sdk-go/idp"
+	"github.com/d-velop/dvelop-sdk-go/idp/idpclient"
 	"github.com/d-velop/dvelop-sdk-go/log"
 	"github.com/d-velop/dvelop-sdk-go/log/syslog"
 	"github.com/d-velop/dvelop-sdk-go/requestid"
 	"github.com/d-velop/dvelop-sdk-go/tenant"
-	"net"
-	"os"
-	"strings"
 )
 
 func main() {
@@ -43,13 +45,21 @@ func main() {
 	logError := func(ctx context.Context, logmessage string) { log.Error(ctx, logmessage) }
 	logInfo := func(ctx context.Context, logmessage string) { log.Info(ctx, logmessage) }
 
+	idpClient, err := idpclient.New()
+	if err != nil {
+		log.Error(context.Background(), err)
+		os.Exit(1)
+	}
+
+	authenticate := idp.Authenticate(idpClient, tenant.SystemBaseUriFromCtx, tenant.IdFromCtx, false, logError, logInfo)
+
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
 		{Pattern: conf.BasePath + "/assets/", Handler: http.HandleAssets(conf.BasePath+"/assets/", assets.AssetFileSystem)},
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
 		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},
-		{Pattern: conf.BasePath + "/idpdemo", Handler: idp.HandleAuth(tenant.SystemBaseUriFromCtx, tenant.IdFromCtx, false, logError, logInfo)(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
+		{Pattern: conf.BasePath + "/idpdemo", Handler: authenticate(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
 	}
 
 	socket, err := net.Listen("tcp", "localhost:")
