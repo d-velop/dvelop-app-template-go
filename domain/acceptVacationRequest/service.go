@@ -3,7 +3,7 @@ package acceptVacationRequest
 
 import (
 	"context"
-	"github.com/d-velop/dvelop-app-template-go/domain"
+	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain"
 )
 
 // Service implements the accept vacation request use-case

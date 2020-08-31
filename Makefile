@@ -1,4 +1,4 @@
-APP_NAME=acme-apptemplatego
+APP_NAME=approuter-echoapp
 DOMAIN_SUFFIX=.service.d-velop.cloud
 BUILD_VERSION=rev.$(shell git rev-parse --short HEAD).date.$(shell date '+%d-%m-%Y-%H.%M.%S')
 

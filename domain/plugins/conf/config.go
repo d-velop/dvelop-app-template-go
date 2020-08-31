@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const AppName = "acme-apptemplatego"
+const AppName = "approuter-echoapp"
 const BasePath = "/" + AppName
 
 // Will be used if request contains no information about the SystemBaseUri
