@@ -6,14 +6,14 @@ import (
 	"os"
 	"strings"
 
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/acceptVacationRequest"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/applyForVacation"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/cancelVacation"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/conf"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/gui/templates"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/http"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/storage/memory"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/rejectVacationRequest"
+	"github.com/d-velop/dvelop-app-template-go/domain/acceptVacationRequest"
+	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
+	"github.com/d-velop/dvelop-app-template-go/domain/cancelVacation"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/conf"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/http"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
+	"github.com/d-velop/dvelop-app-template-go/domain/rejectVacationRequest"
 	"github.com/d-velop/dvelop-sdk-go/idp"
 	"github.com/d-velop/dvelop-sdk-go/idp/idpclient"
 	"github.com/d-velop/dvelop-sdk-go/lambda"
@@ -53,7 +53,6 @@ func main() {
 
 	resources := []http.Resource{
 		{Pattern: conf.BasePath + "/", Handler: http.HandleRoot(conf.AssetBasePath(), templates.Render, conf.Version())},
-		{Pattern: conf.BasePath + "/echo", Handler: http.NewEchoHandler()},
 		{Pattern: conf.BasePath + "/vacationrequest", Handler: vacationRequestHandler.HandleNewForm()},
 		{Pattern: conf.BasePath + "/vacationrequest/", Handler: vacationRequestHandler.Handle(conf.BasePath + "/vacationrequest/")},
 		{Pattern: conf.BasePath + "/features", Handler: http.HandleFeatures()},

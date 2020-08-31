@@ -2,7 +2,7 @@
 
 setlocal enableextensions enabledelayedexpansion
 
-set APPNAME=approuter-echoapp
+set APPNAME=acme-apptemplatego
 set BUILDCONTAINER=registry.invalid/%APPNAME%_build
 
 set "denv="

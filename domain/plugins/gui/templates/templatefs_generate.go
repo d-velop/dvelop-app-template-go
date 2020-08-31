@@ -10,7 +10,7 @@ import (
 	"log"
 	"os"
 
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/gui/templates"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/gui/templates"
 	"github.com/shurcooL/vfsgen"
 )
 

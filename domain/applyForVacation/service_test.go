@@ -2,9 +2,9 @@ package applyForVacation_test
 
 import (
 	"context"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/applyForVacation"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain/plugins/storage/memory"
+	"github.com/d-velop/dvelop-app-template-go/domain"
+	"github.com/d-velop/dvelop-app-template-go/domain/applyForVacation"
+	"github.com/d-velop/dvelop-app-template-go/domain/plugins/storage/memory"
 	"github.com/d-velop/dvelop-sdk-go/tenant"
 	"testing"
 	"time"

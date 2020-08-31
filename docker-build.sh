@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APPNAME=approuter-echoapp
+APPNAME=acme-apptemplatego
 BUILDCONTAINER=registry.invalid/${APPNAME}_build
 
 DENV=

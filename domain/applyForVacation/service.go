@@ -3,7 +3,7 @@ package applyForVacation
 
 import (
 	"context"
-	"git.d-velop.de/dvelopcloud/approuter-echoapp/domain"
+	"github.com/d-velop/dvelop-app-template-go/domain"
 	"github.com/satori/go.uuid"
 )
 
