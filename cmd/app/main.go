@@ -62,7 +62,7 @@ func main() {
 		{Pattern: conf.BasePath + "/idpdemo", Handler: authenticate(http.HandleIdpDemo(conf.AssetBasePath(), templates.Render))},
 	}
 
-	socket, err := net.Listen("tcp", "localhost:")
+	socket, err := net.Listen("tcp", "localhost:5000")
 	if err != nil {
 		log.Error(context.Background(), err)
 		os.Exit(1)
