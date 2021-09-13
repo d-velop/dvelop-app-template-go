@@ -2,7 +2,7 @@ FROM debian:stretch
 
 # unzip, zip, python, build-essential (make, gcc and more) ...
 RUN apt-get update && \
-    apt-get -y install --no-install-recommends ca-certificates unzip zip python curl openssh-client git-core build-essential jq && \
+    apt-get -y install --no-install-recommends ca-certificates unzip zip curl openssh-client git-core build-essential jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -56,11 +56,11 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-aws/${TERRAFORM
     echo "${TERRAFORM_AWS_PLUGIN_CHECKSUM} terraform_aws_plugin.zip" | sha256sum -c - && \
     unzip terraform_aws_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_aws_plugin.zip
 
-# aws cli
-RUN curl -sSL https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip && \
-    unzip awscli-bundle.zip && \
-    ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
-    rm awscli-bundle.zip && rm -rf ./awscli-bundle
+# aws cli v2
+RUN curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
+    unzip awscliv2.zip && \
+    aws/install -i /usr/local/aws -b /usr/local/bin && \
+    rm awscliv2.zip && rm -rf ./aws
 
 WORKDIR /build
 ENTRYPOINT [ "/usr/bin/make" ]
