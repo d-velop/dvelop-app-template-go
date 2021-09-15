@@ -3,3 +3,4 @@
 /buildcontainer/build.log
 /terraform/.terraform/
 .idea/
+.env
