@@ -6,7 +6,7 @@ terraform {
     # bucket names must be globally unique across all AWS customers
     # so we choose a combination of company prefix ('acme')
     # and purpose (terraform) and appname (apptemplatego)
-    bucket = "mbruck-gotemplate-testapp-terraform"
+    bucket = "acme-apptemplatego-terraform"
     key    = "state"
 
     # variables can't be used
