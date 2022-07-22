@@ -1,297 +1,92 @@
-# d.velop app template for Go
+# mbruckgotestapp
 
-This template contains everything you need to write an app for d.velop cloud.
 
-To demonstrate all the aspects of app development a hypothetical but not trivial use case
-of *an employee applying for vacation* is implemented.
 
-## Getting Started
+## Getting started
 
-Just clone this repo and follow the [build instructions](#build) to get the sample app up and running.
-After this adjust the code to fit the purpose of your own business problem/app.
+To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-### Prerequisites
+Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-A linux docker container is used for the build and deployment process of the app.
-So besides docker (use a recent version) the only thing you need on your local development system is a git client
-and an editor or IDE for Go.
- 
-Usually the IDE requires an locally installed [Go](https://golang.org/). Please use at least version 1.11 because this
-project uses [Go Modules](https://github.com/golang/go/wiki/Modules).
+## Add your files
 
-### Build
-
-Execute the build with
+- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
+- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
 
 ```
-docker-build build
+cd existing_repo
+git remote add origin https://git.d-velop.de/mbruck/mbruckgotestapp.git
+git branch -M main
+git push -uf origin main
 ```
 
-This will build a self contained web application `dist/<appname>app.exe` which can be used to run and test your app 
-as a local process on your dev system and a deployment package for aws lambda `dist/lambda` which 
-should be used for the production deployment of your app in d.velop cloud.
+## Integrate with your tools
 
-## Run and test your app locally
+- [ ] [Set up project integrations](https://git.d-velop.de/mbruck/mbruckgotestapp/-/settings/integrations)
 
-Just start `dist/<appname>app.exe` to run and test your app on a local dev environment.
-Please keep in mind, that some functions like authentication
-which require the presence of additional apps (e.g. IdentityProviderApp), 
-won't work because these apps are not available on your local system.
+## Collaborate with your team
 
-## Rename the app
+- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
+- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
+- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
+- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
+- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-You should change the name of the app so that it reflects the business problem you would like
-to solve.
+## Test and Deploy
 
-Each appname in d.velop cloud must be unique. To facilitate this every provider/company chooses
-a unique provider prefix which serves as a namespace for the apps of this provider.
-The prefix can be selected during the registration process in d.velop cloud.
-If you choose a provider prefix which corresponds to your company name or an abbreviation of the company name
-it's very likely that it is available when you later register your app in d.velop cloud.
+Use the built-in continuous integration in GitLab.
 
-For example if your company is named *Super Duper Software Limited* and the domain of your app 
-is *employees applying for vacation* your app should be named
-something like `superduperltd-vacationprocess`App. Note that the `App` suffix isn't used in the configuration files. 
+- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
+- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
+- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
+- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
+- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-Apps belonging to the core d.velop cloud platform don't have a provider prefix. 
+***
 
-Use the `rename` target to rename your app:
+# Editing this README
 
-```
-docker-build rename NAME=NEW_APP_NAME
-```
+When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
-Furthermore you might want to adjust the following values manually:
+## Suggestions for a good README
+Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
-1.  Change the `DOMAIN_SUFFIX` to a domain you own like `yourcompany.com`
-2.  `go.mod` change the module name from `github.com/d-velop/dvelop-app-template-go` to something like `github.com/<yourcompany>/<appname>`.
-    Unfortunately this requires to change the import path in a lot of go files.
-    The 'Replace' function of your IDE should help.    
+## Name
+Choose a self-explaining name for your project.
 
+## Description
+Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-**Please finish at least step 1 and step 2 before you [deploy](#deployment) your app because the names of a lot of
-AWS resources are derived from the `APP_NAME` and `DOMAIN_SUFFIX`. Changing them afterwards requires a
-redeployment of the AWS resources which takes some time**
+## Badges
+On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
 
-## Deployment
+## Visuals
+Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-**Please read [Rename the app](#rename-the-app) before you proceed with the deployment.**
+## Installation
+Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-You need an AWS Account to deploy your app. At the time of writing some of the AWS services are
-free to use for a limited amount of time and workload. 
-Check the [Free Tier](https://aws.amazon.com/free/) offering from AWS for the current conditions. 
+## Usage
+Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-Manually create an IAM user with
-the appropriate rights to create the AWS resources defined by your terraform configuration. 
-You could start with a user who has the `arn:aws:iam::aws:policy/AdministratorAccess` policy to start quickly, 
-but you **should definitely restrict the rights of that IAM user to a minimum as soon as you go into production**.
+## Support
+Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-Configure the AWS credentials of the created IAM user by using one of the methods described in
-[Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
-For example set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables.
-
-**Windows**
-
-```
-SET AWS_ACCESS_KEY_ID=<YOUR-ACCESS-KEY-ID>
-SET AWS_SECRET_ACCESS_KEY=<YOUR-SECRET-ACCESS-KEY>
-```
-
-**Linux**
-
-```
-export AWS_ACCESS_KEY_ID=<YOUR-ACCESS-KEY-ID>
-export AWS_SECRET_ACCESS_KEY=<YOUR-SECRET-ACCESS-KEY>
-```
-
-Deploy the lambda function and all other AWS resources like AWS API Gateway.
-
-```
-docker-build deploy
-```
-
-The build container uses [Terraform](https://www.terraform.io/) to manage the AWS resources and to deploy
-your lambda function. This tool implements a desired state mechanism which means the first execution will take some time
-to provision all the required AWS resources. Consecutive executions will only deploy the difference between the desired state
-(e.g. the new version of your lambda function) and the state which is already deployed (other AWS resources which won't change
-between deployments) and will be much quicker.
-
-### Test your endpoint
-
-The endpoint URLs are logged at the end of the deployment. Just invoke them in a browser to test your app.  
- 
-```
-Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
-
-Outputs:
-
-endpoint = [
-    https://xxxxxxxxxx.execute-api.eu-central-1.amazonaws.com/prod/vacationprocess/,
-    https://xxxxxxxxxx.execute-api.eu-central-1.amazonaws.com/dev/vacationprocess/
-]
-
-```
-
-To watch the current deployment state you can invoke
-
-```
-docker-build show 
-```
-
-at any time without changing your deployment.
-
-### Deployment of a new app version
-
-Just follow the [deployment](#deployment) steps. A new deployment package for the lambda function will be build automatically.
-
-### Additional AWS resources
-
-The terraform deployment configuration contains 2 additonal modules which are disabled by default.
-Just uncomment the corresponding lines in `/terraform/main.tf` to use them but **ensure that the DNS resolution
-for your hosted zone works before you use these modules**. Read the comments in the terraform file.
-
-#### asset_cdn
-This module uses *aws cloudfront* as a CDN for your static assets. Furthermore it allows you to define
-a custom domain for your assets instead of the s3 URL. Your deployment should work perfectly without this module.
-
-#### api_custom_domain 
-This module allows you to define a custom domain for your app endpoints. A custom domain name is required
-as soon as you register your app in the d.velop cloud center because the base path of your app must
-begin with the name of your app. So instead of the default endpoints
-
-```
-    https://xxxxxxxxxx.execute-api.eu-central-1.amazonaws.com/prod/vacationprocess/
-    https://xxxxxxxxxx.execute-api.eu-central-1.amazonaws.com/dev/vacationprocess/
-```
-which base paths begin with `/prod` or `/dev` you need endpoints like
-
-```
-    https://vacationprocess.xyzdomain./vactionprocess
-    https://dev.vacationprocess.xyzdomain./vactionprocess
-```
-which are provided by this module.
-
-## Projectstructure
-
-The presented structure is by no means mandatory for d.velop cloud apps and is highly opinionated.
-Feel free to change the structure if it doesn't fit your needs.
-On the other hand it takes a significant amount of time to invent a logical and useful structure
-for apps and we are pretty sure this structure is at least a good starting point.
-So we would recommend that you try to use it and get comfortable with it so you don't
-waste your time and start immediately to implement a solution for your business problem.
-
-### Go Directories
-
-#### `/cmd`
-
-Contains the main applications for this project. That is the self contained webapplication `/cmd/app` 
-which can be run on your local machine and the lambda function `/cmd/lambda` for AWS.
-
-Don't put a lot of code in the application directory. Put that code in the `/domain` directory.
-
-It's common to have a small `main` function which basically wires up the dependencies and apart from this
-completely relies on the code from the `/domain` directory.
-
-#### `/domain`
-
-Contains the vast majority of the code for this app.
-
-The structure follows the principles of 
-[Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) or
-[Hexagonal Architecture](https://alistair.cockburn.us/coming-soon/) 
-and separates the core of the domain from external frameworks, the DB and the UI.
-
-The directory root contains the heart of the domain and has no dependencies to external 'things' like http or databases.
-
-##### `/domain/<UseCase>`
-
-Each use case of the domain has its own subdirectory that is named after the use case. So you should be able
-to understand the business domain of an app you've never seen before by opening the domain folder and looking
-at the directory names.
-
-The use cases don't have any dependencies to external 'things' either.
-
-##### `/domain/mock`
-
-Contains test mocks which are relevant to more than one use case.
-
-##### `/domain/plugins`
-
-Contains the dependencies to external 'things' like a database or the invocation channel e.g. http.
-The idea is to treat these external 'things' as plugins to the domain in order to keep 
-the domain simple, understandable and separately testable. Last but not least you are able to change external
-dependencies like the database later on without rewriting the whole app because the relevant code
-is not scattered over the whole codebase.
-
-Again you might want to read
-[Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-or [Hexagonal Architecture](https://alistair.cockburn.us/coming-soon/)
-
-### `/buildcontainer`
-
-Contains the `Dockerfile` for the buildcontainer. It is kept in a separate directory to keep
-the buildcontext small so that the image can be build as fast as possible.
-
-### `/terraform`
-
-Contains the terraform files
-
-### `/web`
-
-Contains the webfrontend. 
-
-The frontend tooling is kept to a bare minimum to keep the whole project as simple as possible.
-Furthermore there are hundreds of possible combinations of frameworks and build tools which
-can be used for the frontend. So each developer has his own preferences about the tooling.
-
-Use your favorite tools for the frontend and change the `web` folder accordingly. 
-Don't forget to change the `deploy-assets` task in the `makefile` and the go:generate commands in `/domain/plugins/gui/`
-
-It's likely that we'll provide web projects using different tools and frameworks 
-which can be used to replace the `web` folder in the future. 
-
-## Go Modules
-
-This project uses [Go Modules](https://golang.org/doc/go1.11#modules). That means you need at least Go 1.11 if you want to compile
-this project outside the build container. This means also that your project **must not be located in GOPATH/src**
-(cf.[Preliminary module support](https://golang.org/cmd/go/#hdr-Preliminary_module_support))and the **depedencies
-must not be checked into source control**.
-
-### IDE Support for Go Modules
-
-In some IDEs, like JetBrains GoLand, Go Modules support must be activated explicitly in order to get IntelliSense.
-* Settings > Go > Go Module (vgo) - Enable Go Modules (vgo) integration
-
-## Build mechanism
-A linux docker container is used to build and deploy the software. This has the advantage, that the build
-doesn't rely on specific tools or tool versions that need to be installed on the local development machine or
-build server.
-
-During the build the whole application directory is mmounted in the docker container. The build targets are
-implemented in the `Makefile`.
-
-Two wrappers (`docker-build.bat` and `docker-build.sh`) are provided so you don't have to remember the
-rather long docker command.
-Furthermore these wrappers provide a little utility function to passthrough all environment variables listed
-in the `environment` file from the docker host (that is your development machine or buildserver)
-to the build container.
+## Roadmap
+If you have ideas for releases in the future, it is a good idea to list them in the README.
 
 ## Contributing
+State if you are open to contributions and what your requirements are for accepting them.
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+
+You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+
+## Authors and acknowledgment
+Show your appreciation to those who have contributed to the project.
 
 ## License
+For open source projects, say how it is licensed.
 
-Please read [LICENSE](LICENSE) for licensing information.
-
-## Acknowledgments
-
-Thanks to the following projects for inspiration
-
-* [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
-* [How Do You Structure Your Go Apps](https://github.com/katzien/go-structure-examples)
-* [GoDDD](https://github.com/marcusolsson/goddd)
-* [Starting an Open Source Project](https://opensource.guide/starting-a-project/)
-* [README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [CONTRIBUTING template](https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md)
-
+## Project status
+If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

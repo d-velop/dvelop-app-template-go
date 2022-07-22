@@ -9,8 +9,8 @@ RUN apt-get update && \
 # go
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GOLANG_VERSION 1.13.4
-ENV GOLANG_CHECKSUM 692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c
+ENV GOLANG_VERSION 1.18.3
+ENV GOLANG_CHECKSUM 956f8507b302ab0bb747613695cdae10af99bbd39a90cae522b7c0302cc27245
 RUN curl -fsSL https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o golang.tar.gz && \
     echo "${GOLANG_CHECKSUM} golang.tar.gz" | sha256sum -c - && \
     tar -C /usr/local -xzf golang.tar.gz && \
@@ -19,11 +19,11 @@ RUN curl -fsSL https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-a
     GOOS=windows GOARCH=amd64 go install -v std
 
 # go-junit-report https://github.com/jstemmer/go-junit-report
-RUN go get -u github.com/jstemmer/go-junit-report
+RUN go install github.com/jstemmer/go-junit-report@latest
 
 # terraform
-ENV TERRAFORM_VERSION 0.11.13
-ENV TERRAFORM_CHECKSUM 5925cd4d81e7d8f42a0054df2aafd66e2ab7408dbed2bd748f0022cfe592f8d2
+ENV TERRAFORM_VERSION 1.2.3
+ENV TERRAFORM_CHECKSUM 728b6fbcb288ad1b7b6590585410a98d3b7e05efe4601ef776c37e15e9a83a96   
 RUN curl -fsSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip  && \
     echo "${TERRAFORM_CHECKSUM} terraform.zip" | sha256sum -c - && \
     unzip terraform.zip -d /usr/local/bin && chmod +x /usr/local/bin/terraform ; rm terraform.zip
@@ -43,15 +43,15 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-template/${TERR
     unzip terraform_template_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_template_plugin.zip
 
 # terraform null provider plugin
-ENV TERRAFORM_NULL_PLUGIN_VERSION 2.1.1
-ENV TERRAFORM_NULL_PLUGIN_CHECKSUM 5b29f6a87f4dae4dc295a43f499182221333dbe474fcf724b8ea98fd38cfb3e6
+ENV TERRAFORM_NULL_PLUGIN_VERSION 3.1.1
+ENV TERRAFORM_NULL_PLUGIN_CHECKSUM 976bbaf268cb497400fd5b3c774d218f3933271864345f18deebe4dcbfcd6afa
 RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-null/${TERRAFORM_NULL_PLUGIN_VERSION}/terraform-provider-null_${TERRAFORM_NULL_PLUGIN_VERSION}_linux_amd64.zip -o terraform_null_plugin.zip  && \
     echo "${TERRAFORM_NULL_PLUGIN_CHECKSUM} terraform_null_plugin.zip" | sha256sum -c - && \
     unzip terraform_null_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_null_plugin.zip
 
 # terraform aws provider plugin
-ENV TERRAFORM_AWS_PLUGIN_VERSION 2.23.0
-ENV TERRAFORM_AWS_PLUGIN_CHECKSUM 8076270dfd8d31edc8aa7092f68d3d97c03104b8e47f8e2399d8688b43476d5e
+ENV TERRAFORM_AWS_PLUGIN_VERSION 4.19.0
+ENV TERRAFORM_AWS_PLUGIN_CHECKSUM 9bb3919bd6d94fb22025540f0c1db5eceec8927bd71b8fbdcd295609c999065f 
 RUN curl -fsSL https://releases.hashicorp.com/terraform-provider-aws/${TERRAFORM_AWS_PLUGIN_VERSION}/terraform-provider-aws_${TERRAFORM_AWS_PLUGIN_VERSION}_linux_amd64.zip -o terraform_aws_plugin.zip  && \
     echo "${TERRAFORM_AWS_PLUGIN_CHECKSUM} terraform_aws_plugin.zip" | sha256sum -c - && \
     unzip terraform_aws_plugin.zip -d /usr/local/lib/custom-terraform-plugins ; rm terraform_aws_plugin.zip
@@ -63,4 +63,5 @@ RUN curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zi
     rm awscliv2.zip && rm -rf ./aws
 
 WORKDIR /build
+
 ENTRYPOINT [ "/usr/bin/make" ]
