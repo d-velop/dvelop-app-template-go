@@ -2,7 +2,7 @@ locals {
   assets_bucket_name = "${var.appname}-assets"
 
   lambda_file      = "../dist/lambda.zip"
-  source_code_hash = "${base64sha256(file("${local.lambda_file}"))}"
+  source_code_hash = filebase64sha256(local.lambda_file)
 
   # Unfortunately there is a bug in terraform which leads to the destruction of existing resources if
   # the element order of lists and maps changes cf. https://github.com/hashicorp/terraform/issues/16210
@@ -16,18 +16,18 @@ locals {
   }
 
   // to avoid unnecessary lambda function deployments the build version env var is only changed if the lambda function code has been changed
-  build_version = "${local.source_code_hash != data.terraform_remote_state.app.source_code_hash ? var.build_version : data.terraform_remote_state.app.build_version}"
+  build_version = local.source_code_hash != data.terraform_remote_state.app.outputs.source_code_hash ? var.build_version : data.terraform_remote_state.app.outputs.build_version
 }
 
 module "serverless_lambda_app" {
-  source             = "modules/serverless_lambda_app"
-  stages             = "${local.stages}"
-  appname            = "${var.appname}"
-  lambda_file        = "${local.lambda_file}"
-  source_code_hash   = "${local.source_code_hash}"
+  source             = "./modules/serverless_lambda_app"
+  stages             = local.stages
+  appname            = var.appname
+  lambda_file        = local.lambda_file
+  source_code_hash   = local.source_code_hash
   lambda_handler     = "lambda"
   lambda_runtime     = "go1.x"
-  assets_bucket_name = "${local.assets_bucket_name}"
+  assets_bucket_name = local.assets_bucket_name
 
   # Which rights should the lambda function have.
   # Terraform user must have appropriate rights to attach these policies!
@@ -37,14 +37,13 @@ module "serverless_lambda_app" {
   ]
 
   lambda_environment_vars = {
-    SIGNATURE_SECRET = "${var.signature_secret}"
-    BUILD_VERSION    = "${local.build_version}"
-
+    SIGNATURE_SECRET = var.signature_secret
+    BUILD_VERSION    = local.build_version
     # change to ASSET_BASE_PATH  = "https://${module.asset_cdn.dns_name}/${var.asset_hash}" if asset_cdn is enabled
     ASSET_BASE_PATH = "https://${local.assets_bucket_name}.s3.amazonaws.com/${var.asset_hash}"
   }
 
-  aws_region = "${var.aws_region}"
+  aws_region = var.aws_region
 }
 
 # Uncomment if you want to use cloudfront (a CDN) to deliver your assets OR custom domain names for your API endpoints.
@@ -60,7 +59,6 @@ output "nameserver" {
   value = "${aws_route53_zone.hosted_zone.name_servers}"
 }
 */
-
 # Uncomment if you want to use cloudfront (a CDN) to deliver your assets.
 # IMPORTANT:
 # - This module requires a working dns resolution for your hosted zone because
@@ -75,7 +73,6 @@ module "asset_cdn" {
   origin_domain_name    = "${module.serverless_lambda_app.assets_bucket_domain_name}"
 }
 */
-
 # Uncomment if you want to use custom domain names for your API endpoints.
 # cf. https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html
 # IMPORTANT:

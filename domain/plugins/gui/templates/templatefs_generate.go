@@ -1,4 +1,4 @@
-// +build ignore
+//go:build exclude
 
 // Command to generate an in memory version of the Templatefilesystem
 // cf. https://github.com/shurcooL/vfsgen

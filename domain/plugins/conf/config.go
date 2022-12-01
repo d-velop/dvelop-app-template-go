@@ -4,8 +4,9 @@ package conf
 import (
 	"context"
 	"encoding/base64"
-	"github.com/d-velop/dvelop-sdk-go/log"
 	"os"
+
+	"github.com/d-velop/dvelop-sdk-go/log"
 )
 
 const AppName = "acme-apptemplatego"

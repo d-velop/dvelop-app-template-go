@@ -35,22 +35,30 @@ tf-bucket:
 		echo Create terraform state bucket \"$(BUCKET_NAME)\"...; \
 		aws s3api create-bucket --bucket $(BUCKET_NAME) --acl private --region eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1 &&\
 		aws s3api put-bucket-versioning --bucket $(BUCKET_NAME) --versioning-configuration Status=Enabled &&\
-		aws s3api put-public-access-block --bucket $(BUCKET_NAME) --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true; \
+		aws s3api put-public-access-block --bucket $(BUCKET_NAME) --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true &&\
+		echo Creating and uploading initial terraform state file...; \
+		cd ./terraform &&\
+		terraform init &&\
+		terraform state push "./.terraform/terraform.tfstate";\
+		echo Initial terraform state file uploaded successfully.; \
 	fi
 
 tf-init: tf-bucket
 	cd ./terraform && \
-	terraform init -input=false -plugin-dir=/usr/local/lib/custom-terraform-plugins
+	terraform init
+	terraform providers mirror /usr/local/lib/custom-terraform-plugins && \
+	terraform init -plugin-dir=/usr/local/lib/custom-terraform-plugins -input=false
 
 plan: tf-init build-lambda asset_hash
 	$(eval PLAN=$(shell mktemp))
+	
 	cd ./terraform && \
 	terraform plan -input=false \
-	-var 'signature_secret="$(SIGNATURE_SECRET)"' \
-	-var 'build_version="$(BUILD_VERSION)"' \
-	-var 'appname="$(APP_NAME)"' \
-	-var 'domainsuffix="$(DOMAIN_SUFFIX)"' \
-	-var 'asset_hash="$(ASSET_HASH)"' \
+	-var 'signature_secret=$(SIGNATURE_SECRET)' \
+	-var 'build_version=$(BUILD_VERSION)' \
+	-var 'appname=$(APP_NAME)' \
+	-var 'domainsuffix=$(DOMAIN_SUFFIX)' \
+	-var 'asset_hash=$(ASSET_HASH)' \
 	-out=$(PLAN)
 
 apply: plan
