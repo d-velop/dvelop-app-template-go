@@ -23,8 +23,8 @@ build-app: generate test
 	GOOS=windows GOARCH=amd64 go build -tags release -o ./dist/$(APP_NAME)app.exe  ./cmd/app/
 
 build-lambda: generate test
-	GOOS=linux GOARCH=amd64 go build -tags release -o ./dist/lambda ./cmd/lambda/ &&\
-	cd ./dist && touch -t $(date +%Y)01010000 lambda && zip -X -j lambda.zip lambda && # for reproducible zip file cf. https://content.pivotal.io/blog/barriers-to-deterministic-reproducible-zip-files\
+	GOOS=linux GOARCH=arm64 go build -tags="release lambda.norpc" -o ./dist/bootstrap ./src/cmd/lambda/ &&\
+	cd ./dist && touch -t $(date +%Y)01010000 bootstrap && zip -X -j lambda.zip bootstrap && # for reproducible zip file cf. https://content.pivotal.io/blog/barriers-to-deterministic-reproducible-zip-files\
 	cd ..
 
 tf-bucket:
@@ -41,6 +41,12 @@ tf-bucket:
 tf-init: tf-bucket
 	cd ./terraform && \
 	terraform init -input=false -plugin-dir=/usr/local/lib/custom-terraform-plugins
+
+
+tf-upgrade:
+	#Use this function if the .terraform.lock.hcl does not match the driver version
+	#cd ./terraform && \
+	#terraform init -upgrade
 
 plan: tf-init build-lambda asset_hash
 	$(eval PLAN=$(shell mktemp))
