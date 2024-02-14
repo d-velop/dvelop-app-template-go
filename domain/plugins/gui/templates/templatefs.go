@@ -1,11 +1,11 @@
 package templates
 
 import (
+	"github.com/shurcooL/httpfs/filter"
+	_ "github.com/shurcooL/vfsgen"
 	"net/http"
 	"os"
 	"path"
-
-	"github.com/shurcooL/httpfs/filter"
 )
 
 var HTMLTemplates = filter.Keep(http.Dir("./web/"), func(filepath string, file os.FileInfo) bool {

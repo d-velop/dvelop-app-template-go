@@ -1,5 +1,5 @@
 variable "stages" {
-  type = "map"
+  type = map(any)
 
   # Unfortunately there is a bug in terraform which leads to the destruction of existing resources if
   # the element order of lists and maps changes cf. https://github.com/hashicorp/terraform/issues/16210
@@ -43,12 +43,12 @@ variable "lambda_memory_size" {
 }
 
 variable "lambda_environment_vars" {
-  type        = "map"
+  type        = map(string)
   description = "map that defines environment variables for the lambda function"
 }
 
 variable "lambda_policy_attachements" {
-  type        = "list"
+  type        = list(string)
   description = "list of policies to attach to the lambda function"
 }
 
